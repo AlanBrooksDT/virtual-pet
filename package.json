@@ -1,0 +1,22 @@
+{
+  "name": "virtual-pet",
+  "version": "1.0.0",
+  "description": "A virtual pet to look after and care for.",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/AlanBrooksDT/virtual-pet.git"
+  },
+  "author": "Alan Brooks",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AlanBrooksDT/virtual-pet/issues"
+  },
+  "homepage": "https://github.com/AlanBrooksDT/virtual-pet#readme",
+  "devDependencies": {
+    "jest": "^26.4.0"
+  }
+}
