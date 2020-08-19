@@ -56,3 +56,17 @@ describe('walking is healthy', () => {
         expect(pet.fitness).toEqual(10);
     })
 })
+describe('feeding the pet', () => {
+    test('reduce hunger through feeding', () => {
+        const pet = new Pet('Fido');
+        pet.hunger = 5;
+        pet.feed();
+        expect(pet.hunger).toEqual(2);
+    });
+    test('hunger cannot be less than 0', () => {
+        const pet = new Pet('Fido');
+        pet.hunger = 2;
+        pet.feed();
+        expect(pet.hunger).toEqual(0);
+    })
+});
