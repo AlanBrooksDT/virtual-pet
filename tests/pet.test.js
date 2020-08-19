@@ -48,3 +48,11 @@ describe ('getting older strains', () => {
         expect(pet.fitness).toEqual(7);
     });
 });
+describe('walking is healthy', () => {
+    test('increase fitness with walking', () => {
+        const pet = new Pet('Fido');
+        pet.growUp(); //fitness 7
+        pet.walk(); //fitness >6 = 10
+        expect(pet.fitness).toEqual(10);
+    })
+})
