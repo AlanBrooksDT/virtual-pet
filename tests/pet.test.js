@@ -94,3 +94,20 @@ describe('checking the pets current needs', () => {
         expect(pet.checkUp()).toEqual('I am great!');
     });
 });
+describe('checks that will see if the pet is dead or alive', () => {
+    test('fitness below 0 results in death', () => {
+        const pet = new Pet('FIdo');
+        pet.fitness = -1;
+        expect(pet.isAlive).toEqual(false);
+    })
+    test('hunger above 10 results in death', () => {
+        const pet = new Pet('FIdo');
+        pet.hunger = 11;
+        expect(pet.isAlive).toEqual(false);
+    })
+    test('age greater than or equal to 30 results in death', () => {
+        const pet = new Pet('FIdo');
+        pet.age = 30;
+        expect(pet.isAlive).toEqual(false);
+    })
+})
