@@ -111,3 +111,25 @@ describe('checks that will see if the pet is dead or alive', () => {
         expect(pet.isAlive).toEqual(false);
     })
 })
+describe('you cannot interact with that which is dead', () => {
+    test('throws an error if pet is dead from old age', () => {
+        const pet = new Pet('Fido');
+        pet.age = 30;
+        expect(() => pet.growUp()).toThrow('Your pet is no longer alive :(');
+    });
+    test('throws an error if pet is dead from hunger', () => {
+        const pet = new Pet('Fido');
+        pet.hunger = 10;
+        expect(() => pet.feed()).toThrow('Your pet is no longer alive :(');
+    });
+    test('throws an error if pet is dead from lack of fitness', () => {
+        const pet = new Pet('Fido');
+        pet.fitness = 0;
+        expect(() => pet.walk()).toThrow('Your pet is no longer alive :(');
+    });
+    test('throws an error if pet is dead when checking status', () => {
+        const pet = new Pet('Fido');
+        pet.fitness = 0;
+        expect(() => pet.checkUp()).toThrow('Your pet is no longer alive :(');
+    });
+});
