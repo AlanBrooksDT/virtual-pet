@@ -133,3 +133,16 @@ describe('you cannot interact with that which is dead', () => {
         expect(() => pet.checkUp()).toThrow('Your pet is no longer alive :(');
     });
 });
+describe('adoptChild', () => {
+    test('check if parent has a child', () => {
+      const pet = new Pet('Fido');
+      pet.adoptChild('Cookie');
+      expect(pet.children).toEqual['Cookie']
+    });
+    test('check if parent has multiple children', () => {
+        const pet = new Pet('Fido');
+        pet.adoptChild('Cookie');
+        pet.adoptChild('Crumble');
+        expect(pet.children).toEqual['Cookie', 'Crumble'];
+      });
+});
