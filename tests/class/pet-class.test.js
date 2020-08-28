@@ -1,4 +1,4 @@
-const Pet = require('../src/pet');
+const Pet = require('../../src/class/pet-class');
 
 describe('constructor', () => {
     test('returns an object', () => {
@@ -21,7 +21,7 @@ describe('initial age 0', () => {
 });
 
 describe('increase age', () => {
-    it('increase the age by 1', () => {
+    test('increase the age by 1', () => {
       const pet = new Pet('Fido');
   
       pet.growUp();
@@ -46,6 +46,11 @@ describe ('getting older strains', () => {
 
         pet.growUp();
         expect(pet.fitness).toEqual(7);
+    });
+    test('getting hungry with age', () => {
+        const pet = new Pet('Fido');
+        pet.growUp();
+        expect(pet.hunger).toEqual(5);
     });
 });
 describe('walking is healthy', () => {
@@ -100,7 +105,7 @@ describe('checks that will see if the pet is dead or alive', () => {
         pet.fitness = -1;
         expect(pet.isAlive).toEqual(false);
     })
-    test('hunger above 10 results in death', () => {
+   test('hunger above 10 results in death', () => {
         const pet = new Pet('FIdo');
         pet.hunger = 11;
         expect(pet.isAlive).toEqual(false);
@@ -133,16 +138,48 @@ describe('you cannot interact with that which is dead', () => {
         expect(() => pet.checkUp()).toThrow('Your pet is no longer alive :(');
     });
 });
-describe('adoptChild', () => {
+describe('have a baby', () => {
     test('check if parent has a child', () => {
       const pet = new Pet('Fido');
-      pet.adoptChild('Cookie');
-      expect(pet.children).toEqual['Cookie']
+      pet.haveBaby('Cookie');
+      expect(pet.children[0]).toHaveProperty('name', 'Cookie')
     });
     test('check if parent has multiple children', () => {
-        const pet = new Pet('Fido');
-        pet.adoptChild('Cookie');
-        pet.adoptChild('Crumble');
-        expect(pet.children).toEqual['Cookie', 'Crumble'];
+      const pet = new Pet('Fido');
+      pet.haveBaby('Cookie');
+      pet.haveBaby('Crumble');
+      expect(pet.children[0]).toHaveProperty('name', 'Cookie')
+      expect(pet.children[1]).toHaveProperty('name', 'Crumble')
       });
+    test('double-check if children are stored as array', () => {
+      const pet = new Pet('Fido');
+      pet.haveBaby('Cookie');
+      pet.haveBaby('Crumble');
+      expect(pet.children).toBeInstanceOf(Array);
+    });
+describe('adopt a child', () => {
+    test('check if parent has a child', () => {
+        const parent = new Pet('Fido');
+        const child = new Pet('Cookie');
+        parent.adoptChild(child);
+        expect(parent.children[0]).toEqual(child)
+      });
+    test('check if parent has multiple children', () => {
+        const parent = new Pet('Fido');
+        const child = new Pet('Cookie');
+        const child2 = new Pet('Crumble');
+        parent.adoptChild(child);
+        parent.adoptChild(child2);
+        expect(parent.children[0]).toEqual(child);
+        expect(parent.children[1]).toEqual(child2);
+      });
+    test('double-check if children are stored as array', () => {
+        const parent = new Pet('Fido');
+        const child = new Pet('Cookie');
+        const child2 = new Pet('Crumble');
+        parent.adoptChild(child);
+        parent.adoptChild(child2);
+        expect(parent.children).toBeInstanceOf(Array);
+    });
+});
 });
